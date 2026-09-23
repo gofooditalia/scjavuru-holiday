@@ -8,56 +8,60 @@ export const it: Translations = {
     prices: 'Prezzi',
   },
   hero: {
-    badge: 'Città, Regione — Italia', // ✏️
-    title: 'La tua casa a 2 passi dal mare', // ✏️
+    badge: 'Centro Storico, Palermo',
+    title: 'Il profumo di casa nel cuore di Palermo',
     subtitle:
-      'Descrizione breve della struttura e della sua posizione ideale.', // ✏️
+      'Appartamento elegante con terrazza e aria condizionata nel centro storico, a due passi da Fontana Pretoria e dai Quattro Canti.',
     ctaPrimary: 'Prenota ora',
-    ctaSecondary: 'Scopri le camere',
+    ctaSecondary: "Scopri l'appartamento",
   },
   gallery: {
-    title: 'La Struttura', // ✏️
-    subtitle: 'Spazi accoglienti per le tue vacanze', // ✏️
+    title: "L'Appartamento",
+    subtitle: 'Spazi curati nel cuore della Palermo storica',
   },
   booking: {
-    title: 'Scegli la tua camera',
+    title: 'Prenota il tuo soggiorno',
     subtitle:
-      'La struttura dispone di 3 camere doppie private. Prenota su Airbnb o contattaci per uno sconto.', // ✏️
-    bookOnAirbnb: 'Prenota su Airbnb',
-    comingSoon: 'In arrivo',
-    emailCta: "Scrivici un'email",
+      'Appartamento intero con 1 camera da letto e divano letto, fino a 4 ospiti. Prenota su Booking.com o contattaci direttamente per uno sconto esclusivo.',
+    features: [
+      'Aria condizionata',
+      'Terrazza e balcone',
+      'WiFi gratuito veloce',
+      'Bagno privato con doccia',
+      'Parcheggio privato',
+      'Ascensore',
+    ],
+    bookOnBooking: 'Prenota su Booking.com',
   },
   location: {
     title: 'Dove Siamo',
-    subtitle: 'Nel cuore di [Città], facilmente raggiungibile', // ✏️
+    subtitle: 'Nel cuore del centro storico di Palermo',
     description:
-      'Descrizione della posizione, dei servizi nelle vicinanze e di come raggiungere la struttura.', // ✏️
-    address: 'Via Example, 1 — 00000 Città (XX)', // ✏️
+      "SCJAVURU of home Dominik si trova nel centro storico di Palermo, a due passi da Fontana Pretoria e dai Quattro Canti, a pochi minuti dal Museo Archeologico e da Teatro Massimo. L'aeroporto Falcone-Borsellino dista circa 32 km.",
+    address: 'Via Maccherronai — 90133 Palermo (PA)',
     openMap: 'Apri in Google Maps',
   },
   prices: {
     title: 'Prezzi',
-    subtitle: 'Tariffe aggiornate su Airbnb. Prenota via email per uno sconto esclusivo.',
-    airbnbCard: {
+    subtitle: 'Tariffe aggiornate su Booking.com. Prenota via email per uno sconto esclusivo.',
+    bookingCard: {
       label: 'Tariffe ufficiali',
-      note: 'I prezzi variano in base alla stagione e alla disponibilità. Consulta Airbnb per le tariffe aggiornate.', // ✏️
-      cta: 'Vedi i prezzi su Airbnb',
+      note: 'I prezzi variano in base alla stagione e alla disponibilità. Consulta Booking.com per le tariffe aggiornate in tempo reale.',
+      cta: 'Vedi i prezzi su Booking.com',
     },
     discountCard: {
       badge: 'Offerta esclusiva',
       title: 'Prenota via email, risparmi di più',
-      desc: 'Se le date sono disponibili e prenoti via email, applichiamo uno sconto rispetto ad Airbnb.', // ✏️
+      desc: 'Se le date che desideri sono disponibili e prenoti direttamente via email, applichiamo uno sconto rispetto alle tariffe pubblicate su Booking.com.',
       cta: 'Richiedi lo sconto',
     },
-    minStay: 'Soggiorno minimo: 2 notti', // ✏️
+    minStay: 'Soggiorno minimo: 1 notte',
   },
   form: {
     name: 'Nome',
     namePlaceholder: 'Il tuo nome',
     email: 'Email',
     emailPlaceholder: 'la-tua@email.com',
-    room: 'Camera',
-    roomDefault: 'Scegli una camera',
     checkin: 'Data di arrivo',
     checkout: 'Data di partenza',
     message: 'Messaggio (opzionale)',
@@ -66,11 +70,12 @@ export const it: Translations = {
     submitting: 'Invio in corso…',
     successTitle: 'Richiesta inviata!',
     successMsg: 'Grazie per averci scritto. Ti risponderemo entro 24 ore.',
-    errorMsg: 'Si è verificato un errore. Riprova o scrivici direttamente.',
+    successReset: "Invia un'altra richiesta",
+    errorMsg: 'Si è verificato un errore. Riprova o scrivici a scjavuruhosteria@libero.it.',
   },
   footer: {
-    tagline: 'Casa vacanze — [Città]', // ✏️
+    tagline: 'Appartamento nel centro storico di Palermo',
     contact: 'Contatti',
-    rights: '© 2025 [Nome Struttura]. Tutti i diritti riservati.', // ✏️
+    rights: '© 2026 SCJAVURU of home Dominik. Tutti i diritti riservati.',
   },
 };

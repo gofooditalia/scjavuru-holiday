@@ -8,56 +8,60 @@ export const en: Translations = {
     prices: 'Prices',
   },
   hero: {
-    badge: 'City, Region — Italy', // ✏️
-    title: 'Your home steps from the sea', // ✏️
+    badge: 'Historic Centre, Palermo',
+    title: 'The scent of home in the heart of Palermo',
     subtitle:
-      'Short description of the property and its ideal location.', // ✏️
+      'Elegant apartment with terrace and air conditioning in the historic centre, steps from Fontana Pretoria and Quattro Canti.',
     ctaPrimary: 'Book now',
-    ctaSecondary: 'Discover the rooms',
+    ctaSecondary: 'Discover the apartment',
   },
   gallery: {
-    title: 'The Property', // ✏️
-    subtitle: 'Welcoming spaces for your holiday', // ✏️
+    title: 'The Apartment',
+    subtitle: 'Well-kept spaces in the heart of historic Palermo',
   },
   booking: {
-    title: 'Choose your room',
+    title: 'Book your stay',
     subtitle:
-      'The property has 3 private double rooms. Book on Airbnb or contact us for a discount.', // ✏️
-    bookOnAirbnb: 'Book on Airbnb',
-    comingSoon: 'Coming soon',
-    emailCta: 'Send us an email',
+      'Whole apartment with 1 bedroom and a sofa bed, up to 4 guests. Book on Booking.com or contact us directly for an exclusive discount.',
+    features: [
+      'Air conditioning',
+      'Terrace and balcony',
+      'Free fast WiFi',
+      'Private bathroom with shower',
+      'Private parking',
+      'Elevator',
+    ],
+    bookOnBooking: 'Book on Booking.com',
   },
   location: {
     title: 'Location',
-    subtitle: 'In the heart of [City], easy to reach', // ✏️
+    subtitle: "In the heart of Palermo's historic centre",
     description:
-      'Description of the location, nearby services, and how to reach the property.', // ✏️
-    address: 'Via Example, 1 — 00000 City (XX)', // ✏️
+      'SCJAVURU of home Dominik is located in the historic centre of Palermo, steps from Fontana Pretoria and Quattro Canti, a few minutes from the Archaeological Museum and Teatro Massimo. Falcone-Borsellino airport is about 32 km away.',
+    address: 'Via Maccherronai — 90133 Palermo (PA)',
     openMap: 'Open in Google Maps',
   },
   prices: {
     title: 'Prices',
-    subtitle: 'Up-to-date rates on Airbnb. Book by email for an exclusive discount.',
-    airbnbCard: {
+    subtitle: 'Up-to-date rates on Booking.com. Book by email for an exclusive discount.',
+    bookingCard: {
       label: 'Official rates',
-      note: 'Prices vary by season and availability. Check Airbnb for real-time rates.', // ✏️
-      cta: 'View prices on Airbnb',
+      note: 'Prices vary by season and availability. Check Booking.com for real-time updated rates.',
+      cta: 'View prices on Booking.com',
     },
     discountCard: {
       badge: 'Exclusive offer',
       title: 'Book by email, save more',
-      desc: 'If your dates are available and you book by email, we apply a discount vs. Airbnb.', // ✏️
+      desc: 'If your preferred dates are available and you book directly by email, we apply a discount compared to Booking.com rates.',
       cta: 'Request the discount',
     },
-    minStay: 'Minimum stay: 2 nights', // ✏️
+    minStay: 'Minimum stay: 1 night',
   },
   form: {
     name: 'Name',
     namePlaceholder: 'Your name',
     email: 'Email',
     emailPlaceholder: 'your@email.com',
-    room: 'Room',
-    roomDefault: 'Choose a room',
     checkin: 'Check-in date',
     checkout: 'Check-out date',
     message: 'Message (optional)',
@@ -66,11 +70,12 @@ export const en: Translations = {
     submitting: 'Sending…',
     successTitle: 'Request sent!',
     successMsg: 'Thank you for writing to us. We will reply within 24 hours.',
-    errorMsg: 'Something went wrong. Please try again or email us directly.',
+    successReset: 'Send another request',
+    errorMsg: 'Something went wrong. Please try again or email scjavuruhosteria@libero.it.',
   },
   footer: {
-    tagline: 'Holiday home — [City]', // ✏️
+    tagline: 'Apartment in the historic centre of Palermo',
     contact: 'Contact',
-    rights: '© 2025 [Property Name]. All rights reserved.', // ✏️
+    rights: '© 2026 SCJAVURU of home Dominik. All rights reserved.',
   },
 };
