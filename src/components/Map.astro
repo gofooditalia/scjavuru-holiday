@@ -9,11 +9,14 @@ interface Props {
 const { lang } = Astro.props;
 const tr = t(lang);
 
-// Via Maccherronai, Palermo
-const LAT = 38.1179254;
-const LON = 13.363223;
+import { GOOGLE_MAPS_URL, GEO } from '../data/place';
 
-const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${LAT}%2C${LON}`;
+// Coordinate del segnaposto della scheda Google Maps "Scjavuru of Home Dominik"
+const LAT = GEO.lat;
+const LON = GEO.lon;
+
+// Link diretto alla scheda Google Business (recensioni, foto, indicazioni)
+const googleMapsUrl = GOOGLE_MAPS_URL;
 
 // Calcolo automatico del bounding box per OpenStreetMap (non modificare)
 const delta = 0.025;

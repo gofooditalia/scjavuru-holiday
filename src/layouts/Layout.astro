@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import type { Lang } from '../i18n/index';
+import { GOOGLE_MAPS_URL, GEO, PLACE } from '../data/place';
 
 interface Props {
   title: string;
@@ -14,6 +15,26 @@ const canonicalIt = 'https://scjavuru.holiday/';
 const canonicalEn = 'https://scjavuru.holiday/en/';
 
 const isIT = lang === 'it';
+
+// Dati strutturati: collegano il sito alla scheda Google Maps
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: PLACE.name,
+  url: isIT ? canonicalIt : canonicalEn,
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: PLACE.streetAddress,
+    postalCode: PLACE.postalCode,
+    addressLocality: PLACE.locality,
+    addressRegion: PLACE.region,
+    addressCountry: PLACE.country,
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: GEO.lat, longitude: GEO.lon },
+  hasMap: GOOGLE_MAPS_URL,
+  sameAs: [GOOGLE_MAPS_URL],
+};
 const fb = {
   title:         isIT ? 'Prenota o contattaci'                          : 'Book or contact us',
   description:   isIT ? 'Indica le date per ricevere il prezzo scontato' : 'Include your dates for a discounted rate',
@@ -43,6 +64,7 @@ const fb = {
     <link rel="alternate" hreflang="x-default" href={canonicalIt} />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3/dist/css/glightbox.min.css" />
   </head>
   <body class="font-sans text-slate-800 bg-white antialiased">
