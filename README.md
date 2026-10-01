@@ -1,7 +1,7 @@
 # BnB Astro Template
 
 Template per siti web di case vacanze e B&B.  
-**Stack:** Astro v6 · Tailwind v4 · Bun · Formspree · GLightbox · OpenStreetMap
+**Stack:** Astro v6 · Tailwind v4 · Bun · Formspree · GLightbox · Google Maps
 
 ## Funzionalità
 
@@ -11,7 +11,7 @@ Template per siti web di case vacanze e B&B.
 - 3 camere con card Airbnb + badge "In arrivo"
 - Form prenotazione con date (Formspree AJAX)
 - Floating contact button (Formspree Formbutton)
-- Mappa OpenStreetMap con coordinate configurabili
+- Mappa Google Maps collegata alla scheda (src/data/place.ts)
 - Sezione prezzi: Airbnb + sconto email
 - SEO: meta, hreflang, og:image
 - Deploy-ready: Vercel, Netlify, GitHub Pages
@@ -54,16 +54,15 @@ const rooms = [
 ];
 ```
 
-### 4. Mappa
-In `src/components/Map.astro` imposta le coordinate GPS:
+### 4. Mappa (Google Maps)
+Tutti i dati della scheda Google sono in `src/data/place.ts`:
 ```ts
-const LAT = 41.9028; // ✏️ latitudine
-const LON = 12.4964; // ✏️ longitudine
+export const GOOGLE_MAPS_CID = '4841584683133220459';                       // ✏️ CID della scheda
+export const GOOGLE_MAPS_FID = '0x1319e5031725b38d:0x4330c39e1420b66b';     // ✏️ feature ID (dal link Maps)
+export const GEO = { lat: 38.1183387, lon: 13.3631736 };                    // ✏️ segnaposto
 ```
-E il link Google Maps:
-```ts
-const googleMapsUrl = 'https://maps.app.goo.gl/XXXXXXXX';
-```
+Il CID e il feature ID si ricavano dal link completo della scheda (`...!1s0x<FID_A>:0x<FID_B>...`):
+il CID è il secondo esadecimale convertito in decimale. La mappa incorporata non richiede API key.
 
 ### 5. Formspree (form di contatto)
 1. Crea account su [formspree.io](https://formspree.io)
