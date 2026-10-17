@@ -1,7 +1,7 @@
 # BnB Astro Template
 
 Template per siti web di case vacanze e B&B.  
-**Stack:** Astro v6 · Tailwind v4 · Bun · Formspree · GLightbox · Google Maps
+**Stack:** Astro v6 · Tailwind v4 · Bun · Resend · GLightbox · Google Maps
 
 ## Funzionalità
 
@@ -9,8 +9,8 @@ Template per siti web di case vacanze e B&B.
 - Header sticky con effetto trasparente → bianco allo scroll
 - Gallery fotografica con lightbox (GLightbox)
 - 3 camere con card Airbnb + badge "In arrivo"
-- Form prenotazione con date (Formspree AJAX)
-- Floating contact button (Formspree Formbutton)
+- Form prenotazione con date (invio tramite `api/contact.js` → Resend, email al gestore)
+- Pulsante di contatto rapido (`QuickContact.astro`, stesso invio)
 - Mappa Google Maps collegata alla scheda (src/data/place.ts)
 - Sezione prezzi: Airbnb + sconto email
 - SEO: meta, hreflang, og:image
@@ -64,10 +64,11 @@ export const GEO = { lat: 38.1183387, lon: 13.3631736 };                    // �
 Il CID e il feature ID si ricavano dal link completo della scheda (`...!1s0x<FID_A>:0x<FID_B>...`):
 il CID è il secondo esadecimale convertito in decimale. La mappa incorporata non richiede API key.
 
-### 5. Formspree (form di contatto)
-1. Crea account su [formspree.io](https://formspree.io)
-2. Crea un nuovo form
-3. Aggiorna l'endpoint in `src/components/ContactForm.astro` e `src/layouts/Layout.astro`
+### 5. Invio delle richieste (Resend)
+I due moduli inviano a `api/contact.js` (funzione Vercel), che spedisce l'email con Resend
+dal dominio verificato gofood.it (mittente `noreply@gofood.it`) al gestore (`scjavuruhosteria@libero.it`).
+Su Vercel serve `RESEND_API_KEY` (variabile condivisa del team GO!Food); destinatario e mittente
+si possono cambiare con `CONTACT_TO` e `CONTACT_FROM`.
 
 ### 6. Dominio e SEO
 In `astro.config.mjs`:
@@ -101,7 +102,7 @@ src/
 │   ├── Map.astro      ← coordinate GPS  ✏️
 │   ├── Prices.astro
 │   ├── Footer.astro
-│   └── ContactForm.astro  ← endpoint Formspree  ✏️
+│   └── ContactForm.astro  ← modulo prenotazione (invio a api/contact.js)
 └── pages/
     ├── index.astro        ← homepage italiana
     └── en/index.astro     ← homepage inglese
@@ -128,4 +129,4 @@ public/
 
 ## Realizzato con
 
-[Astro](https://astro.build) · [Tailwind CSS](https://tailwindcss.com) · [Bun](https://bun.sh) · [Formspree](https://formspree.io) · [GLightbox](https://biati-digital.github.io/glightbox/)
+[Astro](https://astro.build) · [Tailwind CSS](https://tailwindcss.com) · [Bun](https://bun.sh) · [Resend](https://resend.com) · [GLightbox](https://biati-digital.github.io/glightbox/)

@@ -9,17 +9,11 @@ interface Props {
 const { lang } = Astro.props;
 const f = t(lang).form;
 
-// ✏️ SETUP FORMSPREE (una tantum)
-// 1. Vai su https://formspree.io e registrati
-// 2. Crea un nuovo form (o riusa quello di scjavuru-of-home se vuoi ricevere le richieste nella stessa casella)
-// 3. Sostituisci l'endpoint qui sotto
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdajbqyb';
-
 ---
 
 <div class="bg-[#141414] rounded-2xl border border-amber-400/25 shadow-xl shadow-amber-400/5 p-8 lg:p-10">
 
-  <div data-fs-success class="text-center py-8">
+  <div data-cf-success hidden class="text-center py-8">
     <div class="w-16 h-16 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center mx-auto mb-5">
       <svg class="w-8 h-8 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
@@ -32,44 +26,40 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdajbqyb';
     </button>
   </div>
 
-  <div data-fs-error class="mb-5 text-sm text-rose-600 bg-rose-50 border border-rose-100 rounded-lg px-4 py-3"></div>
+  <div data-cf-error hidden class="mb-5 text-sm text-rose-600 bg-rose-50 border border-rose-100 rounded-lg px-4 py-3">{f.errorMsg}</div>
 
-  <form id="contact-form">
+  <form id="contact-form" data-lang={lang} data-submitting={f.submitting}>
+    <div class="hidden" aria-hidden="true"><input name="website" tabindex="-1" autocomplete="off" /></div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
 
       <div class="flex flex-col gap-1">
         <label class="field-label" for="cf-name">{f.name} <span class="text-rose-400">*</span></label>
-        <input id="cf-name" name="name" type="text" required placeholder={f.namePlaceholder} data-fs-field class="field-input" />
-        <span data-fs-error="name" class="err-msg"></span>
+        <input id="cf-name" name="name" type="text" required placeholder={f.namePlaceholder} class="field-input" />
       </div>
 
       <div class="flex flex-col gap-1">
         <label class="field-label" for="cf-email">{f.email} <span class="text-rose-400">*</span></label>
-        <input id="cf-email" name="email" type="email" required placeholder={f.emailPlaceholder} data-fs-field class="field-input" />
-        <span data-fs-error="email" class="err-msg"></span>
+        <input id="cf-email" name="email" type="email" required placeholder={f.emailPlaceholder} class="field-input" />
       </div>
 
       <div class="flex flex-col gap-1">
         <label class="field-label" for="cf-checkin">{f.checkin} <span class="text-rose-400">*</span></label>
-        <input id="cf-checkin" name="checkin" type="text" required readonly autocomplete="off" data-fs-field class="field-input cursor-pointer" />
-        <span data-fs-error="checkin" class="err-msg"></span>
+        <input id="cf-checkin" name="checkin" type="text" required readonly autocomplete="off" class="field-input cursor-pointer" />
       </div>
 
       <div class="flex flex-col gap-1">
         <label class="field-label" for="cf-checkout">{f.checkout} <span class="text-rose-400">*</span></label>
-        <input id="cf-checkout" name="checkout" type="text" required readonly autocomplete="off" data-fs-field class="field-input cursor-pointer" />
-        <span data-fs-error="checkout" class="err-msg"></span>
+        <input id="cf-checkout" name="checkout" type="text" required readonly autocomplete="off" class="field-input cursor-pointer" />
       </div>
 
       <div class="flex flex-col gap-1 sm:col-span-2">
         <label class="field-label" for="cf-message">{f.message}</label>
-        <textarea id="cf-message" name="message" rows="3" placeholder={f.messagePlaceholder} data-fs-field class="field-input resize-none"></textarea>
-        <span data-fs-error="message" class="err-msg"></span>
+        <textarea id="cf-message" name="message" rows="3" placeholder={f.messagePlaceholder} class="field-input resize-none"></textarea>
       </div>
 
     </div>
 
-    <button type="submit" data-fs-submit-btn
+    <button type="submit"
       class="mt-6 w-full flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-900 font-semibold text-base px-8 py-3.5 rounded-full transition-all duration-200 hover:scale-[1.02] shadow-md shadow-amber-400/30 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100">
       <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -91,7 +81,6 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdajbqyb';
   .field-input[aria-invalid="true"] { border-color: #f43f5e; box-shadow: 0 0 0 3px rgba(244,63,94,0.1); }
   .field-input::placeholder { color: #8a8a8a; }
   select.field-input { appearance: auto; color-scheme: dark; }
-  .err-msg { font-size: 0.75rem; color: #f43f5e; min-height: 1rem; }
   :global(.flatpickr-day.selected),
   :global(.flatpickr-day.selected:hover),
   :global(.flatpickr-day.startRange),
@@ -100,24 +89,51 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdajbqyb';
   }
   :global(.flatpickr-day:hover) { background: #2a2a2a; }
   :global(.flatpickr-calendar) { border: 1px solid #2a2a2a; z-index: 99999 !important; }
-  :global([data-fs-success][data-fs-active]) {
-    background: transparent !important;
-    border: 1px solid #2a2a2a !important;
-    border-radius: 0.75rem !important;
-    padding: 2.5rem 1rem !important;
-  }
-  :global([data-fs-success][data-fs-active] ~ form),
-  :global([data-fs-success][data-fs-active] ~ [data-fs-error]) {
-    display: none !important;
-  }
 </style>
 
-<script is:inline src="https://unpkg.com/@formspree/ajax@1" defer></script>
 <script is:inline>
-  window.formspree = window.formspree || function () {
-    (formspree.q = formspree.q || []).push(arguments);
-  };
-  formspree('initForm', { formElement: '#contact-form', formId: 'xdajbqyb' });
+  // Invio della richiesta a /api/contact (Resend → email al gestore)
+  (function () {
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    var box = form.parentElement;
+    var success = box.querySelector('[data-cf-success]');
+    var error = box.querySelector('[data-cf-error]');
+    var button = form.querySelector('button[type="submit"]');
+    var label = button.innerHTML;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      // I campi data sono in sola lettura (calendario): il browser non li controlla, lo facciamo qui
+      var missing = Array.prototype.filter.call(form.querySelectorAll('input[required][readonly]'), function (el) { return !el.value; });
+      form.querySelectorAll('input[readonly]').forEach(function (el) { el.removeAttribute('aria-invalid'); });
+      if (missing.length) {
+        missing.forEach(function (el) { el.setAttribute('aria-invalid', 'true'); });
+        missing[0].focus();
+        missing[0].click();
+        return;
+      }
+      error.hidden = true;
+      button.disabled = true;
+      button.textContent = form.dataset.submitting;
+      var data = Object.fromEntries(new FormData(form).entries());
+      data.lang = form.dataset.lang;
+      data.source = 'form';
+      fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+        .then(function (r) {
+          if (!r.ok) throw new Error();
+          form.reset();
+          form.hidden = true;
+          success.hidden = false;
+        })
+        .catch(function () { error.hidden = false; })
+        .finally(function () { button.disabled = false; button.innerHTML = label; });
+    });
+
+    var reset = document.getElementById('reset-form');
+    if (reset) reset.addEventListener('click', function () { success.hidden = true; form.hidden = false; });
+  })();
 </script>
 <script>
   import flatpickr from 'flatpickr';
@@ -160,13 +176,6 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdajbqyb';
   }
 
   document.getElementById('reset-form')?.addEventListener('click', () => {
-    const successEl = document.querySelector('[data-fs-success]');
-    const form = document.getElementById('contact-form') as HTMLFormElement | null;
-    if (successEl) successEl.removeAttribute('data-fs-active');
-    if (form) {
-      form.reset();
-      form.style.removeProperty('display');
-    }
     initPickers();
   });
 </script>
